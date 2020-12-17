@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>QuizApp</title>
+ </head>
+ <body>
+
+  <center>
+	<!-- Header -->
+  	<div class=".container p-3 bg-dark text-white">
+		<h1>Python Quiz</h1><br>
+		<div style="height:25px;border-width:0;color:white;background-color:#4C636B;">
+			Test Your Practical Knowladge.
+		</div>
+	</div>
+	<br><br>
+	<!-- Quiz -->
+	<div class="card" style="width: 25rem;">
+		<div class="card-header">
+			Q1) What is the output of following code?<br>
+			print(True)
+		</div>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item"><input type="radio" id="o1" name="firsto" checked> False</li>
+			<li class="list-group-item"><input type="radio" id="o2" name="seco"> Error</li>
+			<li class="list-group-item"><input type="radio" id="o3" name="tho"> True</li>
+			<li class="list-group-item"><input type="radio" id="o4"  name="foro"> None</li>
+		</ul>
+	</div><br>
+	<a href="#" class="btn btn-info btn-lg">Submit</a>
+
+  </center>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
