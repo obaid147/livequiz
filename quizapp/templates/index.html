@@ -76,21 +76,27 @@
         {
             display=document.querySelector('input[name=option]:checked').value;
             var result = 'abc';
+            var v = 0
             {% for i in page_obj %}
                 result = '{{ i.answer }}';
             {% endfor %}
 
             if (result == display){
-                document.querySelector("#selectedval").textContent='Your answer is correct';
+                inc(i)
+                document.querySelector("#selectedval").textContent='Your answer is correct ' + 1;
             }
             else if (result != display){
                 document.querySelector("#selectedval").textContent='Wrong Answer, Correct option is '+ result;
             }
         }
-
     </script>
 
-
+    <script>
+    var i = 0
+        function inc(i){
+            i++;
+        }
+    </script>
 
 </center>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
