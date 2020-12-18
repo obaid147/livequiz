@@ -1,44 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
   <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
   <title>QuizApp</title>
- </head>
- <body>
+</head>
+<body>
 
-  <center>
-	<!-- Header -->
-  	<div class=".container p-3 bg-dark text-white">
-		<h1>Python Quiz</h1><br>
+<center>
+
+<div class=".container p-3 bg-dark text-white">
+		<h1>Quiz</h1><br>
 		<div style="height:25px;border-width:0;color:white;background-color:#4C636B;">
-			Test Your Practical Knowladge.
+			Test Your Knowledge.
 		</div>
-	</div>
+</div>
+      <br>
+<!--  Question  -->
+	{% for q in page_obj %}
+        <div class="border border-dark card" style="width: 60rem;">
+            <div class="card-header">
+                Q{{ q.question_number }}.  {{ q.question }}
+            </div>
+        </div>
+        <ul class="p-1 bg-secondary list-group list-group-flush">
+		    <li class="list-group-item">
+                <input type = "radio" name = "option" value = "a" id = "q1a">
+                a. {{ q.option1 }}
+            </li>
+            <li class="list-group-item">
+                <input type = "radio" name = "option" value = "b" id = "q1b">
+                b. {{ q.option2 }}
+            </li>
+            <li class="list-group-item">
+                <input type = "radio" name = "option" value = "c" id = "q1c">
+                c. {{ q.option3 }}
+            </li>
+            <li class="list-group-item">
+            <input type = "radio" name = "option" value = "d" id = "q1d">
+                d. {{ q.option4 }}
+            </li>
+        </ul>
+	{% endfor %}
+
 	<br><br>
-	<!-- Quiz -->
-	<div class="card" style="width: 25rem;">
-		<div class="card-header">
-			Q1) What is the output of following code?<br>
-			print(True)
-		</div>
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item"><input type="radio" id="o1" name="option" checked> False</li>
-			<li class="list-group-item"><input type="radio" id="o2" name="option"> Error</li>
-			<li class="list-group-item"><input type="radio" id="o3" name="option"> True</li>
-			<li class="list-group-item"><input type="radio" id="o4"  name="option"> None</li>
-		</ul>
-	</div><br>
-	<a href="#" class="btn btn-info btn-lg">Submit</a>
+    <input style="margin-left:75px; width:200px;" type="submit"
+           class="btn btn-danger btn-lg" value="Submit" onclick="colnames()"><br>
+    <b style="color:green;" id="selectedval"></b>
 
-  </center>
+    <br><br><br>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_next %}
+                <a style="margin-left:700px; width:200px;" href="?page={{ page_obj.next_page_number }}"
+                   class="btn btn-danger btn-lg">next &raquo;</a>
+            {% else %}
+
+            {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
+
+<!--    Function call on click submit   -->
+    <script type="text/javascript">
+        function colnames()
+        {
+            display=document.querySelector('input[name=option]:checked').value;
+            var result = 'abc';
+            {% for i in page_obj %}
+                result = '{{ i.answer }}';
+            {% endfor %}
+
+            if (result == display){
+                document.querySelector("#selectedval").textContent='Your answer is correct';
+            }
+            else if (result != display){
+                document.querySelector("#selectedval").textContent='Wrong Answer, Correct answer is option '+ result;
+            }
+            else{
+                document.querySelector("#selectedval").textContent='Please Select Your Answer';
+            }
+        }
+    </script>
 
 
+
+
+
+</center>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
