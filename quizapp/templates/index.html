@@ -7,6 +7,7 @@
         <title> {{ title }}</title>
     {% else %}
         <title>Title</title>
+    {% endif %}
 </head>
 <body>
 
@@ -17,6 +18,7 @@
         <h1>{{ heading }}</h1>
     {% else %}
         <h1>Heading</h1>
+    {% endif %}
 		<div style="height:25px;border-width:0;color:white;background-color:#4C636B;">
 			Test Your Knowledge.
 		</div>
@@ -31,7 +33,7 @@
         </div>
         <ul class="p-1 bg-secondary list-group list-group-flush">
 		    <li class="list-group-item">
-                <input type = "radio" name = "option" value = "a" id = "q1a">
+                <input type = "radio" name = "option" value = "a" id = "q1a" checked>
                 a. {{ q.option1 }}
             </li>
             <li class="list-group-item">

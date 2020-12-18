@@ -1,7 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Quiz
-import time
 
 
 def index(request):
