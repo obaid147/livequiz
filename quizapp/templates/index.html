@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>QuizApp</title>
+    {% if title %}
+        <title> {{ title }}</title>
+    {% else %}
+        <title>Title</title>
 </head>
 <body>
 
 <center>
 
 <div class=".container p-3 bg-dark text-white">
-		<h1>Quiz</h1><br>
+    {% if heading %}
+        <h1>{{ heading }}</h1>
+    {% else %}
+        <h1>Heading</h1>
 		<div style="height:25px;border-width:0;color:white;background-color:#4C636B;">
 			Test Your Knowledge.
 		</div>
