@@ -33,7 +33,7 @@
         </div>
         <ul class="p-1 bg-secondary list-group list-group-flush">
 		    <li class="list-group-item">
-                <input type = "radio" name = "option" value = "a" id = "q1a" checked>
+                <input type = "radio" name = "option" value = "a" id = "q1a">
                 a. {{ q.option1 }}
             </li>
             <li class="list-group-item">
@@ -63,12 +63,13 @@
             {% if page_obj.has_next %}
                 <a style="margin-left:700px; width:200px;" href="?page={{ page_obj.next_page_number }}"
                    class="btn btn-danger btn-lg">next &raquo;</a>
-            {% else %}
-
             {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
     </div>
 
+    {% if not page_obj.has_next %}
+        <button>Finish Exam</button>
+    {% endif %}
 <!--    Function call on click submit   -->
     <script type="text/javascript">
         function colnames()
@@ -83,15 +84,11 @@
                 document.querySelector("#selectedval").textContent='Your answer is correct';
             }
             else if (result != display){
-                document.querySelector("#selectedval").textContent='Wrong Answer, Correct answer is option '+ result;
-            }
-            else{
-                document.querySelector("#selectedval").textContent='Please Select Your Answer';
+                document.querySelector("#selectedval").textContent='Wrong Answer, Correct option is '+ result;
             }
         }
+
     </script>
-
-
 
 
 
