@@ -5,7 +5,7 @@ from django.db import models
 
 class Quiz(models.Model):
     question_number = models.IntegerField(default=True)
-    question = models.CharField(max_length=500)
+    question = models.TextField(max_length=500, default=True)
     option1 = models.CharField(max_length=300)
     option2 = models.CharField(max_length=300)
     option3 = models.CharField(max_length=300)

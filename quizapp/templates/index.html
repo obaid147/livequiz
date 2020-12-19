@@ -25,7 +25,7 @@
 </div>
       <br>
 
-<!--  Question  -->
+<!--  Question / Radio -->
 	{% for q in page_obj %}
         <div class="border border-dark card" style="width: 60rem;">
             <div class="card-header">
@@ -61,7 +61,7 @@
 	<!-- Output/Solution -->
 	<b style="color:green; margin-left:75px;" id="selectedval"></b>
 
-    <br><br><br>
+    <br><br>
 
 	<!-- Next Button -->
     <div class="pagination">
@@ -74,9 +74,12 @@
     </div>
 
 
-<!-- Final Button -->
+<!-- Final Button and Note -->
     {% if not page_obj.has_next %}
-        <button>Finish Exam</button>
+		<div style="height:25px;border-width:0;color:white;background-color:grey;">
+			<div style="margin-left:80px;">Note:- Submit Your Answer Before Finishing The Test.</div>
+		</div><br />
+        <a href="#" class="btn btn-info btn-lg" style="margin-left:80px; width:200px;"> Finish Exam</a>
     {% endif %}
 
 
@@ -87,10 +90,8 @@
         function colnames()
         {
             display=document.querySelector('input[name=option]:checked').value;
-            var result = 'abc';
-            var v = 0
             {% for i in page_obj %}
-                result = '{{ i.answer }}';
+			    var result = '{{ i.answer }}';
             {% endfor %}
 
             if (result == display){
