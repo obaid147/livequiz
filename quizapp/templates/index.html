@@ -9,7 +9,7 @@
         <title>Title</title>
     {% endif %}
 </head>
-<body>
+<body onload="load()">
 
 <center>
 
@@ -23,13 +23,13 @@
 			Test Your Knowledge.
 		</div>
 </div>
-      <br>
+      
 
 <!--  Question / Radio -->
 	{% for q in page_obj %}
         <div class="border border-dark card" style="width: 60rem;">
             <div class="card-header">
-                Q{{ q.question_number }}.  {{ q.question }}
+                Question{{ q.question_number }}.  {{ q.question|linebreaks }}
             </div>
         </div>
         <ul class="p-1 bg-secondary list-group list-group-flush">
@@ -54,54 +54,61 @@
 
 	
 	<!-- Submit -->
-	<br><br>
-    <input style="margin-left:75px; width:200px;" type="submit"
-           class="btn btn-danger btn-lg" value="Submit" onclick="colnames()"><br>
+	<br><!-- 
+	    <input style="margin-left:75px; width:200px;" type="submit"
+	           class="btn btn-danger btn-lg" value="Submit" onclick="colnames()"><br> -->
 
 	<!-- Output/Solution -->
 	<b style="color:green; margin-left:75px;" id="selectedval"></b>
-
-    <br><br>
 
 	<!-- Next Button -->
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_next %}
                 <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
-                   class="btn btn-danger btn-lg">next &raquo;</a>
-            {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
+                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
+            {% else %}
+                <a style="margin-left:575px; width:200px;" href="{% url 'start' %}"
+                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
+			
+			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
+
         </span>
     </div>
-
-
-<!-- Final Button and Note -->
-    {% if not page_obj.has_next %}
-		<div style="height:25px;border-width:0;color:white;background-color:grey;">
-			<div style="margin-left:80px;">Note:- Submit Your Answer Before Finishing The Test.</div>
-		</div><br />
-        <a href="#" class="btn btn-info btn-lg" style="margin-left:80px; width:200px;"> Finish Exam</a>
-    {% endif %}
-
 
 
 
 <!--    Function call on click submit   -->
     <script type="text/javascript">
-        function colnames()
-        {
-            display=document.querySelector('input[name=option]:checked').value;
-            {% for i in page_obj %}
-			    var result = '{{ i.answer }}';
-            {% endfor %}
+		
+		function submitBtn(){
+			display=document.querySelector('input[name=option]:checked').value;
 
-            if (result == display){
-                document.querySelector("#selectedval").textContent='Your answer is correct ';
-            }
-            else if (result != display){
-                document.querySelector("#selectedval").textContent='Wrong Answer, Correct option is '+ result;
-            }
-        }
+			{% for i in page_obj %}
+				var result = '{{ i.answer }}';
+			{% endfor %}
+
+			if (result == display){		
+				alert("Your Answer is correct")
+			}
+			else{
+				alert("Your Answer is wrong, Correct Option is " + result)
+				}
+		}
+		
     </script>
+
+
+<!-- Final Button and Note -->
+    {% if not page_obj.has_next %}
+		<div style="height:25px;border-width:0;color:white;background-color:grey;">
+			Note:- Submit Your Answer Before Finishing The Test, Otherwise this question will be submitted as not done.
+		</div><br />
+		<input style="margin-left:80px; width:200px;" type="submit"
+           class="btn btn-lg btn-info" value="Finish" onclick="a()"><br>
+		<div id="score"></div>
+
+    {% endif %}
 
 
 </center>
