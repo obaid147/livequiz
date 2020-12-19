@@ -61,15 +61,13 @@
 	<!-- Output/Solution -->
 	<b style="color:green; margin-left:75px;" id="selectedval"></b>
 
-	<!-- Next Button -->
+	<!-- Next and Submit Button -->
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_next %}
                 <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
                    class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
-            {% else %}
-                <a style="margin-left:575px; width:200px;" href="{% url 'start' %}"
-                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
+            
 			
 			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -97,18 +95,6 @@
 		}
 		
     </script>
-
-
-<!-- Final Button and Note -->
-    {% if not page_obj.has_next %}
-		<div style="height:25px;border-width:0;color:white;background-color:grey;">
-			Note:- Submit Your Answer Before Finishing The Test, Otherwise this question will be submitted as not done.
-		</div><br />
-		<input style="margin-left:80px; width:200px;" type="submit"
-           class="btn btn-lg btn-info" value="Finish" onclick="a()"><br>
-		<div id="score"></div>
-
-    {% endif %}
 
 
 </center>
