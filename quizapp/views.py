@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Quiz
+from django.contrib import messages
 
 
 def index(request):
@@ -22,4 +23,6 @@ def start(request):
 		'heading': 'Home',
 		'title': 'Home Page',
 	}
+
+	messages.success(request, "Welcome"),
 	return render(request, 'start.html', context)

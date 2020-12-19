@@ -9,7 +9,7 @@
         <title>Title</title>
     {% endif %}
 </head>
-<body>
+<body onload="loadPage()">
 <center>
 
 <div class=".container p-3 bg-dark text-white">
@@ -19,9 +19,24 @@
         <h1>Heading</h1>
     {% endif %}
 </div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+	<script>
+	function loadPage(){
+		alert('{{ message }}')
+	}
+</script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
 <br><br><br><br><br><br>
 <p>
 </p>
+
 
 
         <a href="{% url 'index' %}" style="width:50%;" class="btn btn-info dropdown-toggle">
