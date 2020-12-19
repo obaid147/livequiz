@@ -24,6 +24,7 @@
 		</div>
 </div>
       <br>
+
 <!--  Question  -->
 	{% for q in page_obj %}
         <div class="border border-dark card" style="width: 60rem;">
@@ -51,25 +52,35 @@
         </ul>
 	{% endfor %}
 
+	
+	<!-- Submit -->
 	<br><br>
     <input style="margin-left:75px; width:200px;" type="submit"
            class="btn btn-danger btn-lg" value="Submit" onclick="colnames()"><br>
-    <b style="color:green;" id="selectedval"></b>
+
+	<!-- Output/Solution -->
+	<b style="color:green; margin-left:75px;" id="selectedval"></b>
 
     <br><br><br>
 
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_next %}
-                <a style="margin-left:700px; width:200px;" href="?page={{ page_obj.next_page_number }}"
+                <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
                    class="btn btn-danger btn-lg">next &raquo;</a>
             {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
     </div>
 
+
+<!-- Final Button -->
     {% if not page_obj.has_next %}
         <button>Finish Exam</button>
     {% endif %}
+
+
+
+
 <!--    Function call on click submit   -->
     <script type="text/javascript">
         function colnames()
@@ -82,8 +93,7 @@
             {% endfor %}
 
             if (result == display){
-                inc(i)
-                document.querySelector("#selectedval").textContent='Your answer is correct ' + 1;
+                document.querySelector("#selectedval").textContent='Your answer is correct ';
             }
             else if (result != display){
                 document.querySelector("#selectedval").textContent='Wrong Answer, Correct option is '+ result;
@@ -91,14 +101,10 @@
         }
     </script>
 
-    <script>
-    var i = 0
-        function inc(i){
-            i++;
-        }
-    </script>
 
 </center>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
