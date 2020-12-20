@@ -32,10 +32,12 @@ h1{
 </head>
 <body>
 <center>
-    {% if user.is_authenticated %}
-        <h1>You Are Already Logged In Please Logout First.</h1><br>
-        <a href="{% url 'logout' %}" class="btn btn-info btn-lg" style="width:50%">logout</a><br><br>
-    {% else %}
+    {% comment %}
+<!--    {% if user.is_authenticated %}-->
+<!--        <h1>You Are Already Logged In Please Logout First.</h1><br>-->
+<!--        <a href="{% url 'logout' %}" class="btn btn-info btn-lg" style="width:50%">logout</a><br><br>-->
+<!--    {% else %}-->
+    {% endcomment %}
         <p class="text-lg-left text-center font-weight-bold" style="width: 8rem; text-size:100px; color: White;">
         <h1>
             {% if heading %}
@@ -47,9 +49,11 @@ h1{
     <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg');">
             <br><br><br><br>
 
-        <a href="{% url 'index' %}" class="btn btn-info btn-lg" style="width:30%">Home</a><br><br>
+        <a href="{% url 'start' %}" class="btn btn-info btn-lg" style="width:30%">Home</a><br><br>
                     <br><br>
+        {% comment %}
         <a href="{% url 'register' %}" class="text-info" style="width:15  %">Need Account?</a>
+        {% endcomment %}
         <br><br>
         <form action='login' method="post">
             {% csrf_token %}
@@ -70,7 +74,7 @@ h1{
         </div>
     </div>
 </center>
-    {% endif %}
+   {% comment %} {% endif %} {% endcomment %}
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
