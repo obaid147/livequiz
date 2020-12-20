@@ -47,3 +47,39 @@ def login(request):
             return redirect('login')
     else:
         return render(request, 'login.html', contents)
+
+
+def register(request):
+    contents = {
+        'title': 'Register',
+        'heading': 'Register'
+    }
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if password2 == password1:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'UserName Taken')
+                return redirect('register')
+
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Email Taken')
+                return redirect('register')
+
+            user = User.objects.create_user(
+                username=username,
+                password=password1,
+                email=email,
+            )
+            user.save()
+            messages.success(request, 'User Created')  # <-
+            return redirect('login')
+        else:
+            messages.error(request, 'Password Mismatch')
+            return redirect('register')
+    else:
+        return render(request, 'app/register.html', contents)
+
