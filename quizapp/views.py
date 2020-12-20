@@ -24,3 +24,12 @@ def start(request):
 	}
 
 	return render(request, 'start.html', context)
+
+
+def login(request):
+	context = {
+		'heading': 'Home',
+		'title': 'Home Page',
+	}
+
+	return render(request, 'login.html', context)
