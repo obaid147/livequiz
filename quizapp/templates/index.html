@@ -9,7 +9,7 @@
         <title>Title</title>
     {% endif %}
 </head>
-<body>
+<body onload="cleardata_onload()">
 
 <center>
 
@@ -50,16 +50,8 @@
                 d. {{ q.option4 }}
             </li>
         </ul>
+
 	{% endfor %}
-
-	
-	<!-- Submit -->
-	<br><!-- 
-	    <input style="margin-left:75px; width:200px;" type="submit"
-	           class="btn btn-danger btn-lg" value="Submit" onclick="colnames()"><br> -->
-
-	<!-- Output/Solution -->
-	<b style="color:green; margin-left:75px;" id="selectedval"></b>
 
 	<!-- Next and Submit Button -->
     <div class="pagination">
@@ -78,25 +70,57 @@
 
 
 
-<!--    Function call on click submit   -->
+<!-- Function call on click submit   -->
     <script type="text/javascript">
 		
 		function submitBtn(){
+			
+			
 			display=document.querySelector('input[name=option]:checked').value;
-
+			
 			{% for i in page_obj %}
 				var result = '{{ i.answer }}';
 			{% endfor %}
 
-			if (result == display){		
-				alert("Your Answer is correct")
+			if (result == display){
+				var ls_Contador_num = sessionStorage.getItem('ls_Contador_num');
+			if (!ls_Contador_num) {
+				ls_Contador_num = 0;
+				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
+			}
+			
+				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
+				ls_Contador_num = ls_Contador_num + 1;
+				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
+			
+			cleardata(ls_Contador_num);
+				alert("Your Answer is correct " + ls_Contador_num)
 			}
 			else{
 				alert("Your Answer is wrong, Correct Option is " + result)
 				}
+
+			function cleardata(ls_Contador_num){
+				alert("cleardata called");
+				var total = '{{ page_obj.paginator.num_pages }}';
+				if (ls_Contador_num == total || ls_Contador_num > total)
+				{
+					sessionStorage.clear();
+				}
+			
+			}
+		}
+
+		function cleardata_onload(){
+			var page_number = '{{ page_obj.number }}';
+
+			if (page_number == 1)
+			{
+				sessionStorage.clear();
+			}
 		}
 		
-    </script>
+	</script>
 
 
 </center>
