@@ -75,7 +75,6 @@
 		
 		function submitBtn(){
 			
-			
 			display=document.querySelector('input[name=option]:checked').value;
 			
 			{% for i in page_obj %}
@@ -93,7 +92,7 @@
 				ls_Contador_num = ls_Contador_num + 1;
 				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
 			
-			cleardata(ls_Contador_num);
+				cleardata(ls_Contador_num);
 				alert("Your Answer is correct " + ls_Contador_num)
 			}
 			else{
