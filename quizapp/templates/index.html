@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    {% if title %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	{% if title %}
         <title> {{ title }}</title>
     {% else %}
         <title>Title</title>
     {% endif %}
-</head>
-<body onload="cleardata_onload()">
 
+</head>
+
+<body>
 <center>
 
 <div class=".container p-3 bg-dark text-white">
@@ -19,111 +21,24 @@
     {% else %}
         <h1>Heading</h1>
     {% endif %}
-		<div style="height:25px;border-width:0;color:white;background-color:#4C636B;">
-			Test Your Knowledge.
-		</div>
 </div>
-      
 
-<!--  Question / Radio -->
-	{% for q in page_obj %}
-        <div class="border border-dark card" style="width: 60rem;">
-            <div class="card-header">
-                Question{{ q.question_number }}.  {{ q.question|linebreaks }}
-            </div>
-        </div>
-        <ul class="p-1 bg-secondary list-group list-group-flush">
-		    <li class="list-group-item">
-                <input type = "radio" name = "option" value = "a" id = "q1a" checked>
-                a. {{ q.option1 }}
-            </li>
-            <li class="list-group-item">
-                <input type = "radio" name = "option" value = "b" id = "q1b">
-                b. {{ q.option2 }}
-            </li>
-            <li class="list-group-item">
-                <input type = "radio" name = "option" value = "c" id = "q1c">
-                c. {{ q.option3 }}
-            </li>
-            <li class="list-group-item">
-            <input type = "radio" name = "option" value = "d" id = "q1d">
-                d. {{ q.option4 }}
-            </li>
-        </ul>
+<br><br><br>
+<p></p>
 
-	{% endfor %}
-
-	<!-- Next and Submit Button -->
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_next %}
-                <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
-                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
-            {% else %}
-                <a style="margin-left:575px; width:200px;" href="{% url 'start' %}"
-                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
-			
-			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
-
-        </span>
-    </div>
-
-
-
-<!-- Function call on click submit   -->
-    <script type="text/javascript">
-		
-		function submitBtn(){
-			
-			display=document.querySelector('input[name=option]:checked').value;
-			
-			{% for i in page_obj %}
-				var result = '{{ i.answer }}';
-			{% endfor %}
-
-			if (result == display){
-				var ls_Contador_num = sessionStorage.getItem('ls_Contador_num');
-			if (!ls_Contador_num) {
-				ls_Contador_num = 0;
-				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
-			}
-			
-				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
-				ls_Contador_num = ls_Contador_num + 1;
-				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
-			
-				cleardata(ls_Contador_num);
-				alert("Your Answer is correct " + ls_Contador_num)
-			}
-			else{
-				alert("Your Answer is wrong, Correct Option is " + result)
-				}
-
-			function cleardata(ls_Contador_num){
-				alert("cleardata called");
-				var total = '{{ page_obj.paginator.num_pages }}';
-				if (ls_Contador_num == total || ls_Contador_num > total)
-				{
-					sessionStorage.clear();
-				}
-			
-			}
-		}
-
-		function cleardata_onload(){
-			var page_number = '{{ page_obj.number }}';
-
-			if (page_number == 1)
-			{
-				sessionStorage.clear();
-			}
-		}
-		
-	</script>
-
-
+<div class="btn-group-vertical">
+	<a href="{% url 'start' %}" class="btn btn-info btn-lg"> <h3>Start Quiz</h3> </a><br>
+	{% comment %}
+	{% if user.is_authenticated %}
+		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Level 1 Quiz</h3> </a><br>
+		<a href="{% url 'sttar' %}" class="btn btn-info btn-sm"> <h3>Level 2 Quiz</h3> </a><br>
+		<a href="#" class="btn btn-info btn-sm"> <h3>Level 3 Quiz</h3> </a>
+	{% else %}
+		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Start Quiz</h3> </a><br>
+	{% endif %}
+	{% endcomment %}
+</div>
 </center>
-
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
