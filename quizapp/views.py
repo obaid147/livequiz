@@ -41,7 +41,8 @@ def signup(request):
         #         messages.error(request, f"{msg}: {form.error_messages[msg]}")
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+
+    return render(request, 'signup.html', {'form': form, 'heading': 'Register', 'title': 'Signup Form'})
 
 
 def logout_req(request):
