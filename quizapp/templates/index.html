@@ -27,16 +27,12 @@
 <p></p>
 
 <div class="btn-group-vertical">
-	<a href="{% url 'start' %}" class="btn btn-info btn-lg"> <h3>Start Quiz</h3> </a><br>
-	{% comment %}
 	{% if user.is_authenticated %}
-		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Level 1 Quiz</h3> </a><br>
-		<a href="{% url 'sttar' %}" class="btn btn-info btn-sm"> <h3>Level 2 Quiz</h3> </a><br>
+		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Level 2 Quiz</h3> </a><br>
 		<a href="#" class="btn btn-info btn-sm"> <h3>Level 3 Quiz</h3> </a>
 	{% else %}
-		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Start Quiz</h3> </a><br>
+		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Simple Quiz</h3> </a><br>
 	{% endif %}
-	{% endcomment %}
 </div>
 </center>
 
