@@ -31,6 +31,12 @@
 	{% endif %}
 </div>
 
+
+{% if messages %}
+	{% for message in messages %}
+		{{ message }}
+	{% endfor %}
+{% endif %}
 <br><br><br>
 <p></p>
 
@@ -39,7 +45,7 @@
 		<a href="#" class="btn btn-info btn-lg"> <h3>Level 2 Quiz</h3> </a><br>
 		<a href="#" class="btn btn-info btn-lg"> <h3>Level 3 Quiz</h3> </a>
 	{% else %}
-		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Simple Quiz</h3> </a><br>
+		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Sample Quiz</h3> </a><br>
 	{% endif %}
 </div>
 </center>

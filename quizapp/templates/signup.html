@@ -23,13 +23,18 @@
     {% csrf_token %}
      <div class="form-group" style="color:pink;">
             {% for field in form %}
+				{% if field.label == "Password Confirmation" %}
+					{{ field.label }} = "ReEnter Password"
+				{% else %}
                 <br>{{ field.label }}<br>
+				{% endif %}
                 {{ field }} <br>
             {% endfor %}
      </div>
+	 <input type="submit" class="btn btn-info btn-sm" value="Submit">
+
 </form>
 
-    <input type="submit" class="btn btn-info btn-sm" value="Submit">
 <br>
 <br>
     <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
