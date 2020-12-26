@@ -33,7 +33,16 @@
         <input type="submit" class="btn btn-info btn-sm" value="Submit">
 
 	</form>
-	<br>
+    <br>
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+          <p>{{ message }}</p>
+      </div>
+      {% endfor %}
+    {% endif %}
+
+    <br>
 	<small> Forgot password? <a href="#">Reset</a></small>
 
 

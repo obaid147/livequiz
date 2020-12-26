@@ -4,6 +4,7 @@ from .models import Quiz
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -12,6 +13,7 @@ def index(request):
         'title': 'Home Page',
     }
     return render(request, 'index.html', context)
+
 
 
 def start(request):
@@ -34,7 +36,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f"You can now login as {username}")
+            messages.success(request, f"Account created!!! Login as {username}")
             return redirect('login')
         # else:
         #     for msg in form.error_messages:
@@ -45,6 +47,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form, 'heading': 'Register', 'title': 'Signup Form'})
 
 
+@login_required
 def logout_req(request):
     logout(request)
     messages.info(request, "Logged out successfully")
@@ -61,6 +64,9 @@ def login_req(request):
             login(request, user)
             messages.info(request, f"You are now logged-in as {username}")
             return redirect('index')
+        else:
+            messages.info(request, "Username / password incorrect")
+            return redirect('login')
     context = {
         'heading': 'Log-in',
         'title': 'Login-Form',

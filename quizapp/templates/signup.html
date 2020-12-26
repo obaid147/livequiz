@@ -11,6 +11,7 @@
 </head>
 <body>
 <center>
+
 <div class=".container p-3 bg-dark text-white">
     {% if heading %}
         <h1>{{ heading }}</h1>
@@ -23,19 +24,16 @@
     {% csrf_token %}
      <div class="form-group" style="color:pink;">
             {% for field in form %}
-				{% if field.label == "Password Confirmation" %}
-					{{ field.label }} = "ReEnter Password"
-				{% else %}
-                <br>{{ field.label }}<br>
-				{% endif %}
+				<br>{{ field.label }}<br>
                 {{ field }} <br>
             {% endfor %}
      </div>
-	 <input type="submit" class="btn btn-info btn-sm" value="Submit">
+     <input type="submit" href="{% url 'signup' %}" class="btn btn-info btn-sm" value="Submit">
 
 </form>
 
 <br>
+    {{ form.errors.username }}
 <br>
     <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
 
