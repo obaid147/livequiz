@@ -1,3 +1,5 @@
+{% block mycontents %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +21,7 @@
     {% else %}
         <h1>Heading</h1>
     {% endif %}
-		<div style="height:25px;border-width:0;color:white;background-color:#4C636B;">
-			Test Your Knowledge.
-		</div>
+
 </div>
       
 
@@ -60,7 +60,7 @@
                 <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
                    class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
             {% else %}
-                <a style="margin-left:575px; width:200px;" href="{% url 'signup' %}"
+                <a style="margin-left:575px; width:200px;" href="{% url 'index' %}"
                    class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
 
 			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -70,7 +70,7 @@
 
 
 
-<!-- Function call on click submit   -->
+<!-- Function call on click submit -->  
     <script type="text/javascript">
 		
 		function submitBtn(){
@@ -80,13 +80,14 @@
 			{% for i in page_obj %}
 				var result = '{{ i.answer }}';
 			{% endfor %}
+            var ls_Contador_num = sessionStorage.getItem('ls_Contador_num');
 
-			if (result == display){
-				var ls_Contador_num = sessionStorage.getItem('ls_Contador_num');
-			if (!ls_Contador_num) {
+            if (!ls_Contador_num) {
 				ls_Contador_num = 0;
 				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
 			}
+			if (result == display){
+			
 			
 				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
 				ls_Contador_num = ls_Contador_num + 1;
@@ -132,3 +133,4 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
+{% endblock mycontents %}
