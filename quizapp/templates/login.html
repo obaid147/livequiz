@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load crispy_forms_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,14 @@
     {% else %}
         <title>Title</title>
     {% endif %}
+<style>
+    .errorlist
+    {
+        color: red;
+        list-style-type:none;
+        background-color: coral;
+    }
+</style>
 </head>
 <body>
 <center>
@@ -22,28 +30,23 @@
 	<small> Need Account? <a href="{% url 'signup' %}">Register</a> </small>
     <br>
 
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group" style="color:pink;">
-            {% for field in form %}
-                <br>{{ field.label }}<br>
-                {{ field }} <br>
-            {% endfor %}
-        </div>
-        <input type="submit" class="btn btn-info btn-sm" value="Submit">
-
-	</form>
-    <br>
-    {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}" role="alert">
-          <p>{{ message }}</p>
+   <form method="post">
+    {% csrf_token %}
+    <div class="form-col">
+      <div class="form-group col-md-6 mb-0">
+        <br>{{ form.username|as_crispy_field }}<br>
       </div>
-      {% endfor %}
-    {% endif %}
+      <div class="form-group col-md-6 mb-0">
+        <br>{{ form.password|as_crispy_field }}<br>
+      </div>
+    </div>
 
-    <br>
-	<small> Forgot password? <a href="#">Reset</a></small>
+       <p style="color: blue;">{{ form.non_field_errors }}</p>
+
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+
+	<!--<br><small> Forgot password? <a href="#">Reset</a></small>-->
 
 
 </center>

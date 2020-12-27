@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load crispy_forms_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     {% else %}
         <title>Title</title>
     {% endif %}
+
 </head>
 <body>
 <center>
@@ -22,18 +23,20 @@
 
 <form method="post">
     {% csrf_token %}
-     <div class="form-group" style="color:pink;">
-            {% for field in form %}
-				<br>{{ field.label }}<br>
-                {{ field }} <br>
-            {% endfor %}
-     </div>
-     <input type="submit" href="{% url 'signup' %}" class="btn btn-info btn-sm" value="Submit">
-
+    <div class="form-col">
+      <div class="form-group col-md-6 mb-0">
+        <br>{{ form.username|as_crispy_field }}<br>
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        <br>{{ form.password1|as_crispy_field }}<br>
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        <br>{{ form.password2|as_crispy_field }}<br>
+      </div>
+    </div>
+     <input type="submit" href="{% url 'signup' %}" class="btn btn-primary btn-sm" value="Submit">
 </form>
 
-<br>
-    {{ form.errors.username }}
 <br>
     <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
 
