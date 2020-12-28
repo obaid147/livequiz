@@ -12,11 +12,10 @@
 </head>
 <body>
 <div class="row">
-	<div class="col-md-3">
+	<div class="col">
 		<div class="card card-body">
-			<a class="btn btn-warning" href="{% url 'index' %}"> &#8592; Home</a>
 			<hr>
-			<h3 style="text-align: center">
+			<h3 style="text-align: center" class=".container p-3 bg-dark text-white">
 				{% if heading %}
 					{{ heading }}
 				{% else %}
@@ -25,8 +24,10 @@
 			</h3>
 			<hr>
 		</div>
+		<a class="btn btn-info btn-lg" style="margin-left:45%; opacity: 80%; width:120px;"
+		   href="{% url 'index' %}"> Home</a>
 	</div>
-</div>
+</div><br>
 <center>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -34,11 +35,7 @@
       <div class="form-group col-md-6 mb-0">
         <br>{{ form|crispy }}<br>
       </div>
-
     </div>
-
-       <p style="color: blue;">{{ form.non_field_errors }}</p>
-
     <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 </center>
