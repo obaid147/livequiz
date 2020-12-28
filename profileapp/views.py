@@ -15,7 +15,9 @@ def user_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your Profile was updated!")
-            return render(request, 'index.html')
-
+            return redirect('index')
+        else:
+            messages.error(request, "Error")
+            return render(request, "index.html")
     context = {'title': 'Profile', 'heading': 'User Profile', 'form': form}
     return render(request, 'profile.html', context)
