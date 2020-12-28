@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from .forms import ProfileForm
 
 
-# @login_required
+@login_required
 def user_profile(request):
     form = ProfileForm()
     if request.method == 'POST':
