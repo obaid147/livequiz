@@ -1,0 +1,52 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>'Profile'</title>
+	{% endif %}
+</head>
+<body>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'index' %}"> &#8592; Home</a>
+			<hr>
+			<h3 style="text-align: center">
+				{% if heading %}
+					{{ heading }}
+				{% else %}
+					'Profile'
+				{% endif %}
+			</h3>
+			<hr>
+		</div>
+	</div>
+</div>
+<center>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-col">
+      <div class="form-group col-md-6 mb-0">
+        <br>{{ form|crispy }}<br>
+      </div>
+
+    </div>
+
+       <p style="color: blue;">{{ form.non_field_errors }}</p>
+
+    <button type="submit" href="{% url 'index' %}" class="btn btn-primary">Upload</button>
+</form>
+</center>
+
+{{ form.errors }}
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

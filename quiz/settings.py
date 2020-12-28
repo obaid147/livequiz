@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'quizapp',
     'intermediateapp',
+    'profileapp',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,9 @@ ROOT_URLCONF = 'quiz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['D:/QuizApp/intermediateapp/templates', os.path.join(BASE_DIR, 'templates'),
+        'DIRS': ['D:/QuizApp/profileapp/templates',
+                 'D:/QuizApp/intermediateapp/templates',
+                 os.path.join(BASE_DIR, 'templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,8 +119,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/images/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'profileapp/static/images')
