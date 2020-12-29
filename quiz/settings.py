@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'quizapp',
     'intermediateapp',
+    'advancedapp',
     'profileapp',
 ]
 
@@ -58,6 +59,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['D:/QuizApp/profileapp/templates',
                  'D:/QuizApp/intermediateapp/templates',
+                 'D:/QuizApp/advancedapp/templates',
                  os.path.join(BASE_DIR, 'templates'),
                  ],
         'APP_DIRS': True,

@@ -52,7 +52,7 @@
         </ul>
 
 	{% endfor %}
-
+    <br>
 	<!-- Next and Submit Button -->
     <div class="pagination">
         <span class="step-links">
@@ -60,7 +60,7 @@
                 <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
                    class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
             {% else %}
-                <a style="margin-left:575px; width:200px;" href="{% url 'login' %}"
+                <a style="margin-left:575px; width:200px;" href="{% url 'index' %}"
                    class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
 
 			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -87,8 +87,6 @@
 				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
 			}
 			if (result == display){
-			
-			
 				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
 				ls_Contador_num = ls_Contador_num + 1;
 				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
@@ -103,7 +101,7 @@
 				alert("Your Answer is wrong, Correct Option is " + result + "\nMarks "+ ls_Contador_num + ' / ' + '{{ page_obj.paginator.num_pages }}')
 				}
 
-			function cleardata(ls_Contador_num){
+			function cleared(ls_Contador_num){
 				var total = '{{ page_obj.paginator.num_pages }}';
 				if (ls_Contador_num == total || ls_Contador_num > total)
 				{
