@@ -1,5 +1,4 @@
 appdirs==1.4.3
-apturl
 asgi-redis==1.4.3
 asgiref==3.3.1
 attrs==20.3.0
@@ -83,7 +82,7 @@ requests-oauthlib==1.3.0
 requests-unixsocket==0.2.0
 SecretStorage==2.3.1
 simplejson==3.16.0
-six==1.14.0
+six==1.14.0apturl
 social-auth-app-django==4.0.0
 social-auth-core==3.3.3
 soupsieve==2.0.1
