@@ -14,5 +14,5 @@ class Quiz(models.Model):
 
 
 class ResetPassword(models.Model):
-	username = models.CharField(max_length=300, default=None)
+	username = models.CharField(max_length=300, default=None, null=True, blank=True)
 	emailid = models.EmailField(max_length=300, default=None)

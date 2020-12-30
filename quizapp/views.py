@@ -84,27 +84,25 @@ def reset_password(request):
 	flag = True
 	if request.method == 'POST':
 		if form.is_valid():
-			username = form.cleaned_data.get('username')
+			username = str(form.cleaned_data.get('username'))
 			emailid = form.cleaned_data.get('emailid')
+
 			context = {
 					'title': 'ResetPassword',
 					'heading': 'Forgot Password',
 					'form': form,
 					}
-			
 			for user in users:
-				if str(username) == str(user):
-					print("&"*10)
+				if username == str(user):
 					flag = True
 					messages.success(request, f'Password Sent to {emailid}')
 					return redirect('login')
 				else:
-					print("!"*10)
 					flag = False
 			if not flag:
 				messages.warning(request, f'Username {username} is not valid!')
 				return render(request, 'reset_password.html', context)
-
+			
 	else:
 		form = ResetPasswordForm()
 		return render(request, 'reset_password.html', {'form':form})
