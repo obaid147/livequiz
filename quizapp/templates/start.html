@@ -91,8 +91,9 @@
 				ls_Contador_num = ls_Contador_num + 1;
 				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
 			
-				cleardata(ls_Contador_num);
 				alert("Your Answer is correct\nMarks " + ls_Contador_num + ' / ' + '{{ page_obj.paginator.num_pages }}')
+				cleardata(ls_Contador_num);
+
 			}
 			else{
 				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));

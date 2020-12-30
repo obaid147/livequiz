@@ -26,7 +26,16 @@
             <h1>Heading</h1>
         {% endif %}
     </div>
-    <br><br>
+    
+{% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+          <p>{{ message }}</p>
+      </div>
+      {% endfor %}
+{% endif %}
+
+<br><br><br>
 	<small> Need Account? <a href="{% url 'signup' %}">Register</a> </small>
     <br>
 
@@ -46,8 +55,7 @@
     <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
 
-	<!--<br><small> Forgot password? <a href="#">Reset</a></small>-->
-
+	<br><small> Forgot password? <a href="{% url 'reset_password' %}">Reset</a></small>
 
 </center>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -72,6 +72,11 @@
 		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Sample Quiz</h3> </a><br>
 	{% endif %}
 </div>
+
+{% for user in users %}
+<br>	{{ user }} <br>
+{% endfor %}
+
 </center>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
