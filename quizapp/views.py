@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from .models import Quiz, ResetPassword
-from . forms import ResetPasswordForm
+from .models import Quiz
+from .forms import ResetPasswordForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
@@ -10,12 +10,11 @@ from django.contrib.auth import get_user_model
 
 
 def index(request):
-	context = {
+    context = {
         'heading': 'Home',
         'title': 'Home Page',
     }
-	return render(request, 'index.html', context)
-
+    return render(request, 'index.html', context)
 
 
 def start(request):
@@ -36,7 +35,7 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             username = form.cleaned_data.get('username')  # get username from input field
             messages.success(request, f"Account created!!! Login as {username}")
             return redirect('login')
@@ -78,31 +77,42 @@ def login_req(request):
 
 
 def reset_password(request):
-	User = get_user_model()
-	users = User.objects.all()
-	form = ResetPasswordForm(request.POST)
-	flag = True
-	if request.method == 'POST':
-		if form.is_valid():
-			username = str(form.cleaned_data.get('username'))
-			emailid = form.cleaned_data.get('emailid')
+    # top_level_domains = ['.org', '.com', '.net', '.io', '.co', '.in', '.me', '.test', '.edu', '.info', '.gov']
+    # flag_mail = True
+    user_object = get_user_model()
+    users = user_object.objects.all()
+    form = ResetPasswordForm(request.POST)
+    context = {
+        'title': 'ResetPassword',
+        'heading': 'Forgot Password',
+        'form': form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            flag_user = True
+            username = str(form.cleaned_data.get('username'))
+            emailid = str(form.cleaned_data.get('emailid'))
+            # for domain in top_level_domains:
+            #     if not emailid.endswith(domain):
+            #         print("&"*100)
+            #         flag_mail = True
+            #     else:
+            #         flag_mail = False
+            # if not flag_mail:
+            #     print("!"*100)
+            #     messages.warning(request, 'Email ID not Proper')
+            #     return redirect('login')
 
-			context = {
-					'title': 'ResetPassword',
-					'heading': 'Forgot Password',
-					'form': form,
-					}
-			for user in users:
-				if username == str(user):
-					flag = True
-					messages.success(request, f'Password Sent to {emailid}')
-					return redirect('login')
-				else:
-					flag = False
-			if not flag:
-				messages.warning(request, f'Username {username} is not valid!')
-				return render(request, 'reset_password.html', context)
-			
-	else:
-		form = ResetPasswordForm()
-		return render(request, 'reset_password.html', {'form':form})
+            for user in users:
+                if username == str(user):
+                    messages.success(request, f' RESET Password Instructions Sent to {emailid}')
+                    return redirect('login')
+                else:
+                    flag_user = False
+            if not flag_user:
+                messages.warning(request, f'Username {username} is not valid!')
+                return render(request, 'reset_password.html', context)
+
+    form = ResetPasswordForm()
+    context['form'] = form
+    return render(request, 'reset_password.html', context)

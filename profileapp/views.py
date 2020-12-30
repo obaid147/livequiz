@@ -7,8 +7,6 @@ from .models import Profile
 
 @login_required
 def user_profile(request):
-    user = request.user
-    userid = user.id
     images = Profile.objects.all()
     form = ProfileForm()
     if request.method == 'POST':

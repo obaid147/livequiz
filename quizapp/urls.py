@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from intermediateapp import views as v
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -8,5 +7,5 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('logout/', views.logout_req, name='logout'),
     path('login/', views.login_req, name='login'),
-	path('reset_password/', views.reset_password, name='reset_password'),
+    path('reset_password/', views.reset_password, name='reset_password'),
 ]
