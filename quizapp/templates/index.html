@@ -45,7 +45,7 @@
 	
 	&nbsp;
 	{% if user.is_authenticated %}
-		<a href="{% url 'logout' %}" class="btn btn-danger btn-lg">Logout {{ user }}</a>
+		<a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout {{ user }}</a>
 	{% else %}
 		<a href="{% url 'login' %}" class="btn btn-danger btn-sm">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="{% url 'signup' %}" class="btn btn-danger btn-sm">Register</a>
@@ -67,20 +67,29 @@
 
 <div class="btn-group-vertical">
 	{% if user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="profile_btn success" style="width:100%;"> Profile</a><br>
+        <a href="{% url 'profile' %}" class="profile_btn success" style="width:70%; margin-left:25px;"> Profile</a><br>
 		<a href="{% url 'intermediate' %}" class="btn btn-info btn-lg"> <h3>Level 2 Quiz</h3> </a><br>
-		<a href="{% url 'advanced' %}" class="btn btn-info btn-lg"> <h3>Level 3 Quiz</h3> </a>
+		<a href="{% url 'advanced' %}" class="btn btn-info btn-lg"> <h3>Level 3 Quiz</h3> </a> <br>
+    <a class="profile_btn success" style="width:70%; margin-left:25px;" onclick="myEmail()"> My Email</a><br>
+
 	{% else %}
 		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Sample Quiz</h3> </a><br>
 	{% endif %}
 </div>
 
-{% for user in users %}
-<br>	{{ user }} <br>
-{% endfor %}
-
 </center>
 
+<script>
+  function myEmail(){
+    var email = '{{ user.email }}'
+    if(email==""){
+      alert("No email is associated with the user: {{ user.username }}")
+    }
+    else{
+      alert("Your Email-id is: " + email)
+    }
+  }
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

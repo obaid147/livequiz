@@ -11,8 +11,3 @@ class Quiz(models.Model):
     option3 = models.CharField(max_length=300, default=True)
     option4 = models.CharField(max_length=300, default=True)
     answer = models.CharField(max_length=300, default=True)
-
-
-class ResetPassword(models.Model):
-    username = models.CharField(max_length=300, default=None, null=True, blank=True)
-    emailid = models.EmailField(max_length=300, default=None)
