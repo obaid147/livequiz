@@ -11,9 +11,11 @@
 <style>
     .errorlist
     {
-        color: red;
+        color: #4ec791;
         list-style-type:none;
-        background-color: coral;
+        background-color: #445252;
+        margin-left:270px;
+        margin-right:250px;
     }
 </style>
 </head>
@@ -51,12 +53,13 @@
       </div>
     </div>
 
-       <p style="color: blue;">{{ form.non_field_errors }}</p>
 
     <button type="submit" class="btn btn-primary">Sign in</button>
+    
+    <p style="color: blue;">{{ form.non_field_errors }}</p>
+
   </form>
 
-	<br><small> Forgot password? <a href="{% url 'reset_password' %}">Reset</a></small>
 
 </center>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,8 +1,11 @@
 from django import forms
-from . models import ResetPassword
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
+class SignupForm(UserCreationForm):
+	email = forms.EmailField()
 
-class ResetPasswordForm(forms.ModelForm):
-    class Meta:
-        model = ResetPassword
-        fields = ('username', 'emailid')
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password1', 'password2')
+
