@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Quiz
-from .forms import ResetPasswordForm
+from .forms import SignupForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
@@ -33,7 +33,7 @@ def start(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')  # get username from input field
@@ -43,7 +43,7 @@ def signup(request):
         #     for msg in form.error_messages:
         #         messages.error(request, f"{msg}: {form.error_messages[msg]}")
     else:
-        form = UserCreationForm()
+        form = SignupForm()
 
     return render(request, 'signup.html', {'form': form, 'heading': 'Register', 'title': 'Signup Form'})
 
