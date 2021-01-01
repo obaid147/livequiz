@@ -1,4 +1,6 @@
 {% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +22,10 @@
         <h1>Heading</h1>
     {% endif %}
 </div>
-
+    <br>
+    <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
+    <br>
+    <br>
 <form method="post">
     {% csrf_token %}
     <div class="form-col">
@@ -37,11 +42,12 @@
         {{ form.password2|as_crispy_field }}
       </div>
     </div>
-     <input type="submit" href="{% url 'signup' %}" class="btn btn-primary btn-sm" value="Submit">
+     <input type="submit" href="{% url 'signup' %}" class="btn btn-primary" value="Submit">
 </form>
 
-<br>
-    <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
+<hr>
+    <h3 style="opacity:50%">or</h3> <br>
+    <a href="{% provider_login_url 'google' %}"> Login with Google</a>
 
 </center>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

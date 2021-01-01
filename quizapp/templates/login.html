@@ -1,4 +1,6 @@
 {% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,29 +40,30 @@
       {% endfor %}
 {% endif %}
 
-<br><br><br>
+<br><br>
 	<small> Need Account? <a href="{% url 'signup' %}">Register</a> </small>
     <br>
 
    <form method="post">
-    {% csrf_token %}
-    <div class="form-col">
-      <div class="form-group col-md-3 mb-0">
-        <br>{{ form.username|as_crispy_field }}<br>
-      </div>
-      <div class="form-group col-md-3 mb-0">
-        <br>{{ form.password|as_crispy_field }}<br>
-      </div>
-    </div>
+       {% csrf_token %}
+        <div class="form-col">
+          <div class="form-group col-md-3 mb-0">
+            <br>{{ form.username|as_crispy_field }}<br>
+          </div>
+          <div class="form-group col-md-3 mb-0">
+            <br>{{ form.password|as_crispy_field }}<br>
+          </div>
+        </div>
 
 
-    <button type="submit" class="btn btn-primary">Sign in</button>
-    
-    <p style="color: blue;">{{ form.non_field_errors }}</p>
+        <button type="submit" class="btn btn-primary">Sign in</button>
 
-  </form>
+        <p style="color: blue;">{{ form.non_field_errors }}</p>
 
-
+    </form>
+    <hr>
+    <h3 style="opacity:50%">or</h3> <br>
+    <a href="{% provider_login_url 'google' %}"> Login with Google</a>
 </center>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

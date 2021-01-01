@@ -14,9 +14,11 @@ from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
 
+# custom alert-messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,6 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -45,6 +48,11 @@ INSTALLED_APPS = [
     'intermediateapp',
     'advancedapp',
     'profileapp',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -135,3 +143,16 @@ STATICFILES_DIRS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'profileapp/static/images')
+
+# django allauth settings
+AUTHENTICATION_BACKENDS = {
+    # Need to login by username in Django admin, regardless of allauth
+    'django.contrib.auth.backends.ModelBackend',
+
+    # allauth specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend'
+}
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
