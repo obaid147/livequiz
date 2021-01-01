@@ -86,7 +86,7 @@
   function myEmail(){
     var email = '{{ user.email }}'
     if(email==""){
-      alert("No email is associated with the user: {{ user.username }}")
+      alert("{{ user.username }} you are logged-in with social account.")
     }
     else{
       alert("Your Email-id is: " + email)
