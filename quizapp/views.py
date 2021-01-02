@@ -5,7 +5,7 @@ from .forms import SignupForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def index(request):
@@ -30,6 +30,7 @@ def start(request):
     return render(request, 'start.html', context)
 
 
+@user_passes_test(lambda user: not user.username, login_url='/')  # if user is already logged-in
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -51,7 +52,11 @@ def logout_req(request):
     return redirect("index")
 
 
+@user_passes_test(lambda user: not user.username, login_url='/')  # if user is already logged-in
 def login_req(request):
+    # if request.user.is_authenticated:
+    #     messages.warning(request, f"You are already logged in as {request.user}")
+    #     return redirect('/')
     form = AuthenticationForm(request, data=request.POST)
     if form.is_valid():
         username = form.cleaned_data.get("username")
