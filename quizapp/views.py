@@ -2,11 +2,10 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Quiz
 from .forms import SignupForm
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
 
 
 def index(request):
@@ -39,9 +38,6 @@ def signup(request):
             username = form.cleaned_data.get('username')  # get username from input field
             messages.success(request, f"Account created!!! Login as {username}")
             return redirect('login')
-        # else:
-        #     for msg in form.error_messages:
-        #         messages.error(request, f"{msg}: {form.error_messages[msg]}")
     else:
         form = SignupForm()
 
