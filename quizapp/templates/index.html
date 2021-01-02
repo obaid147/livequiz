@@ -45,12 +45,12 @@
 	
 	&nbsp;
 	{% if user.is_authenticated %}
-		<a href="{% url 'logout' %}" class="btn btn-danger btn-sm" style="width:120px;margin-left:-10px;">
+		<a href="{% url 'logout' %}" class="btn btn-primary  btn-sm" style="width:120px;margin-left:-10px;color:yellow;"">
             Logout {{ user }}</a>
 	{% else %}
-		<a href="{% url 'login' %}" class="btn btn-danger btn-sm" style="width:120px;">
+		<a href="{% url 'login' %}" class="btn btn-primary btn-sm" style="width:120px;color:yellow;">
             Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="{% url 'signup' %}" class="btn btn-danger btn-sm" style="width:120px;">
+		<a href="{% url 'signup' %}" class="btn btn-primary btn-sm" style="width:120px;color:yellow;">
             Register</a>
 	{% endif %}
 </div>
@@ -65,8 +65,7 @@
       {% endfor %}
 {% endif %}
 
-<br><br><br>
-<p></p>
+<br><br>
 
 <div class="btn-group-vertical">
 	{% if user.is_authenticated %}
