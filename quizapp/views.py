@@ -45,6 +45,12 @@ def signup(request):
     return render(request, 'signup.html', {'form': form, 'heading': 'Register', 'title': 'Signup Form'})
 
 
+"""
+    if a user is logged-out redirect him to index page and not reset password pages.
+"""
+
+
+@user_passes_test(lambda user: user.username, login_url='/')
 @login_required
 def logout_req(request):
     logout(request)
