@@ -70,11 +70,11 @@ def login_req(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.info(request, f"You are now logged-in as {username}")
+            messages.success(request, f"You are now logged-in as {username}")
             return redirect('index')
         else:
-            messages.info(request, "Username / password incorrect")
-            return redirect('login')
+            # form.errors form template
+            pass
     context = {
         'heading': 'Log-in',
         'title': 'Login-Form',
