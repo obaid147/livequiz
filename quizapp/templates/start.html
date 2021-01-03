@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% if title %}
         <title> {{ title }}</title>
@@ -10,10 +11,8 @@
     {% endif %}
 </head>
 <body onload="cleardata_onload()">
-
 <center>
-
-<div class=".container p-3 bg-dark text-white">
+<div class=".container p-1 bg-dark text-white">
     {% if heading %}
         <h1>{{ heading }}</h1>
     {% else %}
@@ -51,26 +50,28 @@
 
 	{% endfor %}
     <br>
+
 	<!-- Next and Submit Button -->
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_next %}
-                <a style="margin-left:575px; width:200px;" href="?page={{ page_obj.next_page_number }}"
-                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
+                <a style="margin-left:650px; width:200px;"
+                   href="?page={{ page_obj.next_page_number }}"
+                   class="btn btn-danger btn-lg"
+                   onclick="submitBtn()">Submit</a>
             {% else %}
-                <a style="margin-left:575px; width:200px;" href="{% url 'index' %}"
-                   class="btn btn-danger btn-lg" onclick="submitBtn()">Submit</a>
-
+                <a style="margin-left:650px; width:200px;"
+                   href="{% url 'index' %}"
+                   class="btn btn-danger btn-lg"
+                   onclick="submitBtn()">Submit</a>
 			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
-
         </span>
     </div>
-
-
+</center>
 
 <!-- Function call on click submit -->  
     <script type="text/javascript">
-		
+
 		function submitBtn(){
 			
 			display=document.querySelector('input[name=option]:checked').value;
@@ -78,36 +79,38 @@
 			{% for i in page_obj %}
 				var result = '{{ i.answer }}';
 			{% endfor %}
-            var ls_Contador_num = sessionStorage.getItem('ls_Contador_num');
+            //var ls_Contador_num = sessionStorage.getItem('ls_Contador_num');
 
-            if (!ls_Contador_num) {
-				ls_Contador_num = 0;
-				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
-			}
+            //if (!ls_Contador_num) {
+				//ls_Contador_num = 0;
+				//sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
+			//}
 			if (result == display){
-				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
-				ls_Contador_num = ls_Contador_num + 1;
-				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
-			
-				alert("Your Answer is correct\nMarks " + ls_Contador_num + ' / ' + '{{ page_obj.paginator.num_pages }}')
-				cleardata(ls_Contador_num);
+				//ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
+				//ls_Contador_num = ls_Contador_num + 1;
+				//sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
+
+				//alert("Your Answer is correct\nMarks " + ls_Contador_num + ' / ' + '{{ page_obj.paginator.num_pages }}')
+				//cleardata(ls_Contador_num);
+                alert("Your Answer is correct")
 
 			}
 			else{
-				ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
-				sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
+				//ls_Contador_num = parseInt(sessionStorage.getItem('ls_Contador_num', ls_Contador_num));
+				//sessionStorage.setItem('ls_Contador_num', ls_Contador_num);
 
-				alert("Your Answer is wrong, Correct Option is " + result + "\nMarks "+ ls_Contador_num + ' / ' + '{{ page_obj.paginator.num_pages }}')
+				//alert("Your Answer is wrong, Correct Option is " + result + "\nMarks "+ ls_Contador_num + ' / ' + '{{ page_obj.paginator.num_pages }}')
+				alert("Your Answer is wrong, Correct Option is " + result)
 				}
 
-			function cleared(ls_Contador_num){
-				var total = '{{ page_obj.paginator.num_pages }}';
-				if (ls_Contador_num == total || ls_Contador_num > total)
-				{
-					sessionStorage.clear();
-				}
-			
-			}
+			//function cleared(ls_Contador_num){
+			//	var total = '{{ page_obj.paginator.num_pages }}';
+			//	if (ls_Contador_num == total || ls_Contador_num > total)
+			//	{
+			//		sessionStorage.clear();
+			//	}
+
+			//}
 		}
 
 		function cleardata_onload(){
@@ -122,7 +125,6 @@
 	</script>
 
 
-</center>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
