@@ -12,7 +12,7 @@ def inter_view(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
-        'heading': 'Intermediate',
+        'heading': 'Intermediate Quiz',
         'title': 'Quiz-App',
         'page_obj': page_obj,
     }
