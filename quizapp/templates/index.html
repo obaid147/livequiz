@@ -5,6 +5,13 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
+    #sample{
+        opacity: 60%;
+    }
+    #sample:hover{
+        opacity: 100%;
+        margin-top: -1px;
+    }
     .profile_btn {
       border: 2px solid black;
       background-color: white;
@@ -75,7 +82,7 @@
     <a class="profile_btn success" style="width:70%; margin-left:25px;" onclick="myEmail()"> My Email</a><br>
 
 	{% else %}
-        <a href="/" class="btn btn-info btn-sm" onclick="return popitup('{% url 'start' %}')">
+        <a href="/" id="sample" class="btn btn-info btn-sm" onclick="return popitup('{% url 'start' %}')">
             <h3>Sample Quiz</h3>
         </a>
 	{% endif %}
