@@ -81,7 +81,7 @@
     <a class="profile_btn success" style="width:70%; margin-left:25px;" onclick="myEmail()"> My Email</a><br>
 
 	{% else %}
-        <a href="/" id="sample" class="btn btn-info btn-sm" onclick="return popitup('{% url 'start' %}')">
+        <a href="{% url 'start' %}" id="sample" class="btn btn-info btn-sm">
             <h3>Sample Quiz</h3>
         </a>
 	{% endif %}
@@ -89,14 +89,6 @@
 
 </center>
 
-<script language="javascript" type="text/javascript">
-function popitup(url) {
-    newwindow=window.open(url,'{{title}}','height=${screen.height},width=${screen.width}');
-    if (window.focus) {newwindow.focus()}
-    return true;
-}
-
-</script>
 <script>
   function myEmail(){
     var email = '{{ user.email }}'
