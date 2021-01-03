@@ -12,7 +12,7 @@ def adv_view(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
-        'heading': 'Advanced',
+        'heading': 'Advanced Quiz',
         'title': 'Quiz-App',
         'page_obj': page_obj,
     }
