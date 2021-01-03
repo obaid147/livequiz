@@ -68,7 +68,6 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error{% else %}{{ message.tags|title }}{% endif %}!</strong> {{ message }}
       </div>
-      </div>
       {% endfor %}
 {% endif %}
 
@@ -94,7 +93,7 @@
 function popitup(url) {
     newwindow=window.open(url,'{{title}}','height=${screen.height},width=${screen.width}');
     if (window.focus) {newwindow.focus()}
-    return false;
+    return true;
 }
 
 </script>
