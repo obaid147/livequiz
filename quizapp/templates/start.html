@@ -2,7 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+<!-- start Animation -->
+<style>
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(#128cb5,#190838);
+    overflow: hidden;
+}
+.box{
+    position: absolute;
+    width: 970px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+.box.box1{
+    background: #126e8c;
+    transform-origin: right;
+    transform: perspective(500px) translateX(-50%) rotateY(-15deg)
+}
+.box.box2{
+    background: #17627a;
+    transform-origin: left;
+    transform: perspective(500px) translateX(50%) rotateY(15deg)
+}
+.box.box1 h4{
+    color: #fff;
+}
+.box.box2 h4{
+    color: rgba(255,255,255,.2);
+    left: -100%;
+}
+.box h4{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    left: 0;
+    font-size: 3em;
+    animation: animate 8s linear infinite;
+    font-family: ComicSansMS;
+}
+@keyframes animate{
+    0%{
+        transform: translate(1940px);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
 
+
+<!-- end Animation   -->
+</style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% if title %}
         <title> {{ title }}</title>
@@ -10,6 +71,7 @@
         <title>Title</title>
     {% endif %}
 </head>
+
 <body onload="cleardata_onload()">
 <center>
 <div class=".container p-1 bg-dark text-white">
@@ -18,9 +80,20 @@
     {% else %}
         <h1>Heading</h1>
     {% endif %}
-
 </div>
-      
+
+<!--  Animation  -->
+<div class="box box1">
+    <h4>
+        This &nbsp; website &nbsp; was  &nbsp; created  &nbsp; using  &nbsp; Django  &nbsp; Framework  &nbsp; by  &nbsp; Obaid-Fayaz.
+    </h4>
+</div>
+<div class="box box2">
+    <h4>
+        This &nbsp; website &nbsp; was  &nbsp; created  &nbsp; using  &nbsp; Django  &nbsp; Framework  &nbsp; by  &nbsp; Obaid-Fayaz.
+    </h4>
+</div>
+                            <br><br><br><br><br><br>
 
 <!--  Question / Radio -->
 	{% for q in page_obj %}
