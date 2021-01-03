@@ -75,12 +75,22 @@
     <a class="profile_btn success" style="width:70%; margin-left:25px;" onclick="myEmail()"> My Email</a><br>
 
 	{% else %}
-		<a href="{% url 'start' %}" class="btn btn-info btn-sm"> <h3>Sample Quiz</h3> </a><br>
+        <a href="/" class="btn btn-info btn-sm" onclick="return popitup('{% url 'start' %}')">
+            <h3>Sample Quiz</h3>
+        </a>
 	{% endif %}
 </div>
 
 </center>
 
+<script language="javascript" type="text/javascript">
+function popitup(url) {
+    newwindow=window.open(url,'{{title}}','height=${screen.height},width=${screen.width}');
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+
+</script>
 <script>
   function myEmail(){
     var email = '{{ user.email }}'
