@@ -1,11 +1,16 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+import uuid
 
+
+uuid_one = str(uuid.uuid4())
+uuid_two = str(uuid.uuid4())
+uuid_start = 'q_u_' + uuid_one + uuid_two + '_i_z'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('start', views.start, name='start'),
+    path(f'{uuid_start}', views.start, name='start'),
     path('signup', views.signup, name='signup'),
     path('logout/', views.logout_req, name='logout'),
     path('login/', views.login_req, name='login'),
