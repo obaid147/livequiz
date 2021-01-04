@@ -17,13 +17,14 @@
         margin-top: -1px;
     }
 
-    .profile_btn {
+    .green_btn {
       border: 2px solid black;
       background-color: white;
       color: black;
       padding: 14px 28px;
       font-size: 16px;
       cursor: pointer;
+      width: 200px;
     }
 
     .success {
@@ -47,8 +48,6 @@
 </head>
 
 <body>
-{{ friends }}
-<center>
 <div class=".container p-3 bg-dark text-white">
     {% if heading %}
         <h1>{{ heading }}</h1>
@@ -80,36 +79,31 @@
       {% endfor %}
 {% endif %}
 
-<br>{% for as in backends.associated %}
-      {% if as.provider == 'google' %}
-        <div class="col-md-6 text-center">
-            <img src="{{as.extra_data.picture.data.url}}" alt="" width="150" height="150" style="border-radius: 50%">
-        </div>
-        <div class="col-md-6 social-container my-2">                 <p> Signed in via:  {{ as.provider }} </p>
-            <p> Name:  {{ as.extra_data.name }} </p>
-            <p> Provider url: <a href="{{ass.extra_data.profile_url}}">link</a></p>
-        </div>
-      {% endif %}
-{% endfor %}<br>
+<br><br>
 
 <div class="btn-group-vertical">
 	{% if user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="profile_btn success"
-           style="width:70%; margin-left:25px;"> Profile</a><br>
+        <a href="{% url 'profile' %}" class="green_btn success"> Profile</a><br>
 		<a href="{% url 'intermediate' %}" class="btn btn-info btn-lg text-dark">
             <h3>Level 2 Quiz</h3> </a><br>
 		<a href="{% url 'advanced' %}" class="btn btn-info btn-lg text-dark">
             <h3>Level 3 Quiz</h3> </a> <br>
-    <a class="profile_btn success" style="width:70%; margin-left:25px;" onclick="myEmail()"> My Email</a><br>
+    <div class="dropdown">
+        <button class="green_btn success" onclick="myEmail()" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Email</button><br>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item"></div>
+            <h6 id="display_email" class=""></h6>
+        </div>
+    </div>
 
-	{% else %}
+    {% else %}
         <a href="{% url 'start' %}" id="sample" class="btn btn-info btn-sm text-dark">
             <h3>Sample Quiz</h3>
         </a>
 	{% endif %}
 </div>
 
-</center>
+
 
 <script>
   function myEmail(){
@@ -118,7 +112,7 @@
       alert("For Your Security {{ user.username }} We Don't Save Emails From External Applications.")
     }
     else{
-      alert("Your Email-id is: " + email)
+        document.getElementById("display_email").innerHTML = email;
     }
   }
 </script>
