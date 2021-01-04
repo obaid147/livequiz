@@ -126,12 +126,12 @@ body{
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_next %}
-                <a style="margin-left:650px; width:200px;"
+                <a style="margin-left:380px; width:200px;"
                    href="?page={{ page_obj.next_page_number }}"
                    class="btn btn-danger btn-lg"
                    onclick="submitBtn()">Submit</a>
             {% else %}
-                <a style="margin-left:650px; width:200px;"
+                <a style="margin-left:380px; width:200px;"
                    href="{% url 'index' %}"
                    class="btn btn-danger btn-lg"
                    onclick="submitBtn()">Submit</a>
