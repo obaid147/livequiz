@@ -9,11 +9,11 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def index(request):
-    context = {
+	context = {
         'heading': 'Home',
         'title': 'Home Page',
-    }
-    return render(request, 'index.html', context)
+	}
+	return render(request, 'index.html', context)
 
 
 def start(request):
@@ -63,21 +63,23 @@ def login_req(request):
     # if request.user.is_authenticated:
     #     messages.warning(request, f"You are already logged in as {request.user}")
     #     return redirect('/')
-    form = AuthenticationForm(request, data=request.POST)
-    if form.is_valid():
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get("password")
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, f"You are now logged-in as {username}")
-            return redirect('index')
-        else:
-            # form.errors form template
-            pass
-    context = {
+	form = AuthenticationForm(request, data=request.POST)
+	if form.is_valid():
+		username = form.cleaned_data.get("username")
+		password = form.cleaned_data.get("password")
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			messages.success(request, f"You are now logged-in as {username}")
+			return redirect('index')
+		else:
+			# form.errors form template
+			pass
+	context = {
         'heading': 'Log-in',
         'title': 'Login-Form',
         'form': form,
-    }
-    return render(request, 'login.html', context)
+	}
+	return render(request, 'login.html', context)
+
+
