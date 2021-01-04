@@ -14,11 +14,11 @@ def user_profile(request):
         if form.is_valid():
             form.save()
 
-            messages.success(request, "Your Profile was updated!")
+            messages.success(request, "you Uploaded an image.")
             return render(request, 'index.html')
         else:
             messages.error(request, "Error")
             return render(request, "index.html")
 
-    context = {'title': 'Profile', 'heading': 'User Profile', 'form': form, 'images': images}
+    context = {'title': 'Upload', 'heading': 'SharePoint', 'form': form, 'images': images}
     return render(request, 'profile.html', context)
