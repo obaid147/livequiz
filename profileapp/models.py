@@ -6,4 +6,4 @@ class Profile(models.Model):
     # bio = models.TextField(max_length=500, null=False, blank=False)
 
     def __str__(self):
-        return self.profile_pic.name
+        return self.profile_pic.url
