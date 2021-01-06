@@ -9,30 +9,8 @@
 		text-align: center;
 		overflow-x: hidden;
 	}
-    #sample{
-        opacity: 60%;
-    }
-    #sample:hover{
-        opacity: 100%;
-        margin-top: -1px;
-    }
-
-    .green_btn {
-      border: 2px solid black;
-      background-color: white;
-      color: black;
-      padding: 14px 28px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 200px;
-    }
-
-    .success {
-      border-color: #4CAF50;
-      color: black;
-
-    }
-    .success:hover {
+    
+    .dark:hover {
       background-color: #4CAF50;
       color: black;
       text-decoration: none;
@@ -48,27 +26,9 @@
 </head>
 
 <body>
-<div class=".container p-3 bg-dark text-white">
-    {% if heading %}
-        <h1>{{ heading }}</h1>
-    {% else %}
-        <h1>Heading</h1>
-    {% endif %}
-	
-	&nbsp;
-	{% if user.is_authenticated %}
-		<a href="{% url 'logout' %}" class="btn btn-info btn-sm text-dark"
-           style="width:120px;margin-left:-10px;">
-            Logout {{ user }}</a>
-	{% else %}
-		<a href="{% url 'login' %}" class="btn btn-info btn-sm text-dark"
-           style="width:120px;">
-            Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="{% url 'signup' %}" class="btn btn-info btn-sm text-dark"
-           style="width:120px;">
-            Register</a>
-	{% endif %}
-</div>
+
+{% include 'navbar.html' %}
+
 
 {% if messages %}
       {% for message in messages %}
@@ -81,27 +41,15 @@
 
 <br><br>
 
-<div class="btn-group-vertical">
-	{% if user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="green_btn success"> Profile</a><br>
-		<a href="{% url 'intermediate' %}" class="btn btn-info btn-lg text-dark">
-            <h3>Level 2 Quiz</h3> </a><br>
-		<a href="{% url 'advanced' %}" class="btn btn-info btn-lg text-dark">
-            <h3>Level 3 Quiz</h3> </a> <br>
+{% if user.is_authenticated %}
     <div class="dropdown">
-        <button class="green_btn success" onclick="myEmail()" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Email</button><br>
+        <button class="btn btn-dark text-white btn-lg" onclick="myEmail()" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Email</button><br>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-item"></div>
             <h6 id="display_email" class=""></h6>
         </div>
     </div>
-
-    {% else %}
-        <a href="{% url 'start' %}" id="sample" class="btn btn-info btn-sm text-dark">
-            <h3>Sample Quiz</h3>
-        </a>
-	{% endif %}
-</div>
+{% endif %}
 
 
 
@@ -116,6 +64,7 @@
     }
   }
 </script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

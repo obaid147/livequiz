@@ -14,14 +14,7 @@
 </head>
 <body>
 <center>
-
-<div class=".container p-1 bg-dark text-white">
-    {% if heading %}
-        <h1>{{ heading }}</h1>
-    {% else %}
-        <h1>Heading</h1>
-    {% endif %}
-</div>
+{% include 'navbar.html' %}
     <br>
     <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
     <br>
@@ -46,13 +39,6 @@
 </form>
 
 </div>
-
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
 
 </center>
 

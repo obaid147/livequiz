@@ -20,5 +20,5 @@ def user_profile(request):
             messages.error(request, "Error")
             return render(request, "index.html")
 
-    context = {'title': 'Upload', 'heading': 'SharePoint', 'form': form, 'images': images}
+    context = {'title': 'Upload', 'heading': 'Uploads', 'form': form, 'images': images}
     return render(request, 'profile.html', context)

@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 def index(request):
 	context = {
-        'heading': 'Home',
         'title': 'Home Page',
+		'heading': 'QuizApp',
 	}
 	return render(request, 'index.html', context)
 

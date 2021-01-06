@@ -30,21 +30,8 @@
 </head>
 <body>
 
-<div class="row">
-	<div class="col">
-			<h3 style="text-align: center" class=".container p-3 bg-dark text-white">
-				{% if heading %}
-					{{ heading }}
-				{% else %}
-					'-SharePoint-'
-				{% endif %}
-			</h3>
-		<br>
-		<a class="btn btn-info btn-sm" style="opacity: 80%; width:120px;"
-		   href="{% url 'index' %}"> Home</a>
-	</div>
-</div>
-<br>
+{% include 'navbar.html' %}
+
 <center>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -59,15 +46,18 @@
 </form>
 </center>
 
-<footer class="bg-dark text-center text-lg-start">
+<footer class="bg-secondary text-center text-lg-start">
 
         <h5 class="text-uppercase text-white">Pictures Uploaded So far...</h5>
 
           {% for img in images %}
-			<img src="{{ img.profile_pic.url }}" width="60">
+			<img src="{{ img.profile_pic.url }}" width="60" height="70">
 		  {% endfor %}
 </footer>
 
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

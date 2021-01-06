@@ -21,13 +21,7 @@
 </head>
 <body>
 <center>
-    <div class=".container p-1 bg-dark text-white">
-        {% if heading %}
-            <h1>{{ heading }}</h1>
-        {% else %}
-            <h1>Heading</h1>
-        {% endif %}
-    </div>
+{% include 'navbar.html' %}
     
 {% if messages %}
       {% for message in messages %}
@@ -68,12 +62,6 @@
     </div>
 
 </center>
-
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 <!--bootstrap js default-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
