@@ -61,17 +61,29 @@
 
         {% for task in tasks %}
             {% if task.complete == True %}
-          <p class="card-text"><strike>{{ task|linebreaks }}</strike>&check;
-                        {{ task.created}}</p>
+                <p class="card-text">
+                    <a href="{% url 'delete_task' task.id %}"
+                        class="card-link btn btn-danger btn-sm text-warning" style="width:60px;">
+                        Delete
+                    </a>
+                    <strike>{{ task }}</strike>&check;
+                        {{ task.created}}
+                </p>
+
                 <hr />
             {% else %}
                 <span class="btn btn-secondary btn-lg" style="width:330px">
                     <p class="card-text"><strong>{{ task|linebreaks }}</strong>
-                        {{ task.created}}</p>
+                        {{ task.created}}
+                    </p>
                     <a href="{% url 'update_task' task.id %}"
-                       class="card-link btn btn-warning btn-sm text-dark" style="width:60px;">Edit</a>
+                       class="card-link btn btn-warning btn-sm text-dark" style="width:60px;">
+                        Edit
+                    </a>
                     <a href="{% url 'delete_task' task.id %}"
-                       class="card-link btn btn-danger btn-sm text-dark" style="width:60px;">Delete</a>
+                       class="card-link btn btn-danger btn-sm text-dark" style="width:60px;">
+                        Delete
+                    </a>
                 </span>
                 <hr />
             {% endif %}
