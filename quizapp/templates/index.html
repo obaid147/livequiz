@@ -9,12 +9,6 @@
 		text-align: center;
 		overflow-x: hidden;
 	}
-    
-    .dark:hover {
-      background-color: #4CAF50;
-      color: black;
-      text-decoration: none;
-    }
     </style>
 
 	{% if title %}
@@ -39,31 +33,15 @@
       {% endfor %}
 {% endif %}
 
+
+
+
 <br><br>
 
-{% if user.is_authenticated %}
-    <div class="dropdown">
-        <button class="btn btn-dark text-white btn-lg" onclick="myEmail()" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Email</button><br>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div class="dropdown-item"></div>
-            <h6 id="display_email" class=""></h6>
-        </div>
-    </div>
+
+
 {% endif %}
 </center>
-
-
-<script>
-  function myEmail(){
-    var email = '{{ user.email }}'
-    if(email==""){
-      alert("For Your Security {{ user.username }} We Don't Save Emails From External Applications.")
-    }
-    else{
-        document.getElementById("display_email").innerHTML = email;
-    }
-  }
-</script>
 
 
 </body>
