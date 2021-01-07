@@ -23,5 +23,5 @@ class TasksForm(forms.ModelForm):
     # remove label from title field
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
-        super().__init__()
+        # super().__init__() instance is removed from update_task when used
         self.fields['title'].label = ''
