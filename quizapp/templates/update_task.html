@@ -1,0 +1,30 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title> {{ title }}</title>
+    {% else %}
+        <title>Title</title>
+    {% endif %}
+</head>
+<body>
+{% include 'navbar.html' %}
+<center><br>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-col">
+            <div class="form-group col-md-3 mb-0">
+                {{ form.title|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-5 mb-0">
+                {{ form.complete|as_crispy_field }}
+            </div>
+        </div>
+        <input type="submit" name="Update Task" class="btn btn-info ">
+    </form>
+
+</center>
+</body>
+</html>

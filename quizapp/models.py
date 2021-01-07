@@ -14,7 +14,9 @@ class Quiz(models.Model):
 
 
 class Tasks(models.Model):
-    name = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default=None)
+    complete = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True, null=False)
 
     def __str__(self):
-        return self.name
+        return self.title

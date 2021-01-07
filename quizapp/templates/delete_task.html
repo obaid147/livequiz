@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+
+    {% if title %}
+        <title> {{ title }}</title>
+    {% else %}
+        <title>Title</title>
+    {% endif %}
+</head>
+<body>
+<center>
+    {% if heading %}
+    <p class="bg-dark text-white">{{ heading }}</p>
+    {% else %}
+        DELETE
+    {% endif %}
+    <p class="card-text">Are you sure you want to delete "{{item}}"?</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-col">
+            <div class="form-group col-md-5 mb-0">
+                <a href="{% url 'index' %}" class="btn btn-info">Cancel</a>
+                <input type="submit" value="YES" class="btn btn-info">
+            </div>
+            <div class="form-group col-md-5 mb-0">
+
+            </div>
+        </div>
+    </form>
+
+</center>
+</body>
+</html>

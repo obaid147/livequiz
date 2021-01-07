@@ -3,8 +3,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    
     <style>
     body{
 		text-align: center;
@@ -25,6 +23,7 @@
 {% include 'navbar.html' %}
 
 <center>
+     {% comment %} Custom messages {% endcomment %}
 {% if messages %}
       {% for message in messages %}
       <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
@@ -35,35 +34,49 @@
 {% endif %}
 
 <br>
-{% if request.user.is_superuser %}
 
-<div class="card" style="width: 30rem;">
-  <div class="card-body">
-    <h3 class="card-title text-muted"><u>Tasks</u></h3><br>
-    
-    <form method="post" action="">
-      {% csrf_token %}
-      <label>Task name: </label>
-      <input type='text' required>
-      <input type="submit" value="ADD" class="btn btn-info btn-sm">
-    </form>
-    
-    <hr />
-    {% comment %}
-      Looping through tasks
-    {% endcomment %} 
-    {% for task in tasks %}
-      <p class="card-text">{{ task }}</p>
-      <a href="#" class="card-link btn btn-warning btn-sm" style="width:60px;">Edit</a>
-      <a href="#" class="card-link btn btn-danger btn-sm" style="width:60px;">Delete</a>
-      <hr />
-    {% endfor %}
-  </div>
-</div>
+    {% comment %} START Task Management for super users {% endcomment %}
+
+{% if request.user.is_superuser %}
+    <div class="card" style="width: 30rem;">
+      <div class="card-body">
+          <form method="post" action="/">
+          {% csrf_token %}
+            <div class="form-col">
+                <div class="form-group col-md-9 mb-0">
+                    {{ form.title|as_crispy_field }}
+                </div>
+            </div>
+            <input type="submit" value="Add Task" class="btn btn-info btn-sm" style="width:200px">
+        </form>
+          <hr />
+          <br>
+        <h1 class="card-title text-muted">My Tasks</h1>
+        <hr />
+
+        {% comment %}
+          Looping through tasks
+        {% endcomment %}
+
+        {% for task in tasks %}
+            {% if task.complete == True %}
+                <p class="card-text"><strike>{{ task }}</strike></p>
+                <hr />
+            {% else %}
+                <div class="btn btn-dark blocked">
+                <p class="card-text">{{ task }}</p>
+                <a href="{% url 'update_task' task.id %}" class="card-link btn btn-warning btn-sm text-dark" style="width:60px;">Edit</a>
+                <a href="{% url 'delete_task' task.id %}" class="card-link btn btn-danger btn-sm text-dark" style="width:60px;">Delete</a>
+                    </div>
+                <hr />
+            {% endif %}
+        {% endfor %}
+      </div>
+    </div>
 {% endif %}
+    {% comment %}  END Task Management for super users {% endcomment %}
 
 </center>
-
 
 </body>
 </html>
