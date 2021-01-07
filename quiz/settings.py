@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'quizapp',
     'intermediateapp',
     'advancedapp',
-    'profileapp',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -142,7 +142,6 @@ STATICFILES_DIRS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'profileapp/static/images')
 
 # django allauth settings
 AUTHENTICATION_BACKENDS = {
