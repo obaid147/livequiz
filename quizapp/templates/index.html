@@ -63,11 +63,14 @@
                 <p class="card-text"><strike>{{ task }}</strike></p>
                 <hr />
             {% else %}
-                <div class="btn btn-dark blocked">
-                <p class="card-text">{{ task }}</p>
-                <a href="{% url 'update_task' task.id %}" class="card-link btn btn-warning btn-sm text-dark" style="width:60px;">Edit</a>
-                <a href="{% url 'delete_task' task.id %}" class="card-link btn btn-danger btn-sm text-dark" style="width:60px;">Delete</a>
-                    </div>
+                <span class="btn btn-secondary btn-lg">
+                    <p class="card-text"><strong>{{ task|linebreaks }}</strong>
+                        {{ task.created}}</p>
+                    <a href="{% url 'update_task' task.id %}"
+                       class="card-link btn btn-warning btn-sm text-dark" style="width:60px;">Edit</a>
+                    <a href="{% url 'delete_task' task.id %}"
+                       class="card-link btn btn-danger btn-sm text-dark" style="width:60px;">Delete</a>
+                </span>
                 <hr />
             {% endif %}
         {% endfor %}

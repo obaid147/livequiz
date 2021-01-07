@@ -13,10 +13,15 @@ class SignupForm(UserCreationForm):
 
 
 class TasksForm(forms.ModelForm):
-
     class Meta:
         model = Tasks
         fields = "__all__"
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Task Title'}),
+            'title': forms.TextInput(attrs={'placeholder': 'Add New Task....'})
         }
+
+    # remove label from title field
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        super().__init__()
+        self.fields['title'].label = ''
