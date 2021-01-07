@@ -61,7 +61,8 @@
 
         {% for task in tasks %}
             {% if task.complete == True %}
-                <p class="card-text"><strike>{{ task }}</strike></p>
+          <p class="card-text"><strike>{{ task|linebreaks }}</strike>&check;
+                        {{ task.created}}</p>
                 <hr />
             {% else %}
                 <span class="btn btn-secondary btn-lg" style="width:330px">
