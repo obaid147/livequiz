@@ -43,11 +43,12 @@
           <form method="post" action="/">
           {% csrf_token %}
             <div class="form-col">
-                <div class="form-group col-md-9 mb-0">
+                <div class="form-group col-md-10 mb-7">
                     {{ form.title|as_crispy_field }}
                 </div>
             </div>
-            <input type="submit" value="Add Task" class="btn btn-info btn-sm" style="width:200px">
+            <input type="submit" value="Add Task" class="btn btn-info btn-sm"
+                   style="width:330px">
         </form>
           <hr />
           <br>
@@ -63,7 +64,7 @@
                 <p class="card-text"><strike>{{ task }}</strike></p>
                 <hr />
             {% else %}
-                <span class="btn btn-secondary btn-lg">
+                <span class="btn btn-secondary btn-lg" style="width:330px">
                     <p class="card-text"><strong>{{ task|linebreaks }}</strong>
                         {{ task.created}}</p>
                     <a href="{% url 'update_task' task.id %}"
