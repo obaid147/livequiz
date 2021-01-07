@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Quiz
+from .models import Quiz, Tasks
 
 
 """ Class QuizAdmin is used to show and use database properly and easily ie: the name QuizAdmin"""
@@ -13,3 +13,5 @@ class QuizAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Quiz, QuizAdmin)
+admin.site.register(Tasks)
+

@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from .models import Quiz
+from .models import Quiz, Tasks
 from .forms import SignupForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -9,11 +9,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def index(request):
-	context = {
+    tasks = Tasks.objects.all()
+    context = {
+        'tasks': tasks,
         'title': 'Home Page',
 		'heading': 'QuizApp',
 	}
-	return render(request, 'index.html', context)
+    return render(request, 'index.html', context)
 
 
 def start(request):

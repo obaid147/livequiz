@@ -11,3 +11,10 @@ class Quiz(models.Model):
     option3 = models.CharField(max_length=300, default=True)
     option4 = models.CharField(max_length=300, default=True)
     answer = models.CharField(max_length=300, default=True)
+
+
+class Tasks(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name

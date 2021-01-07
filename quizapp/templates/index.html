@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,14 +34,34 @@
       {% endfor %}
 {% endif %}
 
+<br>
+{% if request.user.is_superuser %}
 
-
-
-<br><br>
-
-
-
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <h3 class="card-title text-muted"><u>Tasks</u></h3><br>
+    
+    <form method="post" action="">
+      {% csrf_token %}
+      <label>Task name: </label>
+      <input type='text' required>
+      <input type="submit" value="ADD" class="btn btn-info btn-sm">
+    </form>
+    
+    <hr />
+    {% comment %}
+      Looping through tasks
+    {% endcomment %} 
+    {% for task in tasks %}
+      <p class="card-text">{{ task }}</p>
+      <a href="#" class="card-link btn btn-warning btn-sm" style="width:60px;">Edit</a>
+      <a href="#" class="card-link btn btn-danger btn-sm" style="width:60px;">Delete</a>
+      <hr />
+    {% endfor %}
+  </div>
+</div>
 {% endif %}
+
 </center>
 
 
