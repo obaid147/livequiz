@@ -1,68 +1,25 @@
 {% block mycontents %}
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-<!-- start Animation -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <style>
+
+p{
+    font-size: 18px;
+}
+
 body{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background: radial-gradient(#128cb5,#190838);
     overflow: hidden;
 }
-.box{
-    position: absolute;
-    width: 970px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    overflow: hidden;
-    transform-style: preserve-3d;
+a{
+    margin-left: 250px;
 }
-.box.box1{
-    background: #126e8c;
-    transform-origin: right;
-    transform: perspective(500px) translateX(-50%) rotateY(-15deg)
-}
-.box.box2{
-    background: #17627a;
-    transform-origin: left;
-    transform: perspective(500px) translateX(50%) rotateY(15deg)
-}
-.box.box1 h4{
-    color: #fff;
-}
-.box.box2 h4{
-    color: rgba(255,255,255,.2);
-    left: -100%;
-}
-.box h4{
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-    left: 0;
-    font-size: 3em;
-    animation: animate 8s linear infinite;
-    font-family: ComicSansMS;
-}
-@keyframes animate{
-    0%{
-        transform: translate(1940px);
-    }
-    100%{
-        transform: translateX(-100%);
-    }
-}
-<!-- end Animation   -->
+
 </style>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% if title %}
         <title> {{ title }}</title>
     {% else %}
@@ -72,35 +29,24 @@ body{
 
 <body onload="cleardata_onload()">
 <center>
-<div class=".container p-1 bg-dark text-white">
+
     {% if heading %}
-        <h1>{{ heading }}</h1>
+    <span style="font-size: 70px; color:white;">{{ heading }}</span>
+
     {% else %}
         <h1>Heading</h1>
     {% endif %}
-</div>
-
-<!--  Animation  -->
-<div class="box box1">
-    <h4>
-        This &nbsp; website &nbsp; was  &nbsp; created  &nbsp; using  &nbsp; Django  &nbsp; Framework  &nbsp; by  &nbsp; Obaid-Fayaz.
-    </h4>
-</div>
-<div class="box box2">
-    <h4>
-        This &nbsp; website &nbsp; was  &nbsp; created  &nbsp; using  &nbsp; Django  &nbsp; Framework  &nbsp; by  &nbsp; Obaid-Fayaz.
-    </h4>
-</div>
-                            <br><br><br>
+<br>
 
 <!--  Question / Radio -->
 	{% for q in page_obj %}
         <div class="border border-dark card" style="width: 60rem;">
             <div class="card-header">
-                Question{{ q.question_number }}.  {{ q.question|linebreaks }}
+                <p>Question{{ q.question_number }}.  {{ q.question|linebreaks }}</p>
             </div>
         </div>
-        <ul class="p-1 bg-secondary list-group list-group-flush">
+    <p>
+        <ul class="p-1 bg-secondary list-group list-group-flush" style="width: 60rem;">
 		    <li class="list-group-item">
                 <input type = "radio" name = "option" value = "a" id = "q1a" checked>
                 a. {{ q.option1 }}
@@ -117,27 +63,30 @@ body{
             <input type = "radio" name = "option" value = "d" id = "q1d">
                 d. {{ q.option4 }}
             </li>
+            <li class="list-group-item">
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}"
+                               class="btn btn-danger btn-lg"
+                               onclick="submitBtn()">Submit and Next</a>
+                        {% else %}
+                            <a href="{% url 'index' %}"
+                               class="btn btn-danger btn-lg"
+                               onclick="submitBtn()">Submit and Finish</a>
+                        {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                </div>
+            </li>
+
         </ul>
 
 	{% endfor %}
-    <br>
 
-	<!-- Next and Submit Button -->
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_next %}
-                <a style="margin-left:380px; width:200px;"
-                   href="?page={{ page_obj.next_page_number }}"
-                   class="btn btn-danger btn-lg"
-                   onclick="submitBtn()">Submit and Next</a>
-            {% else %}
-                <a style="margin-left:380px; width:200px;"
-                   href="{% url 'index' %}"
-                   class="btn btn-danger btn-lg"
-                   onclick="submitBtn()">Submit and Finish</a>
-			{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-    </div>
+            <!-- Next and Submit Button -->
+
+
+
 </center>
 
 <!-- Function call on click submit -->  
