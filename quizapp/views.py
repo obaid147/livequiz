@@ -33,8 +33,12 @@ def update_task(request, pk):   # update tasks for superuser
     if request.method == "POST":
         form = TasksForm(request.POST, instance=task)
         if form.is_valid():
+            updater = form.cleaned_data['complete']
             updated_task = form.save()
-            messages.success(request, f'Task ({updated_task}) updated.')
+            if updater:
+                messages.success(request, f'Task ({updated_task}) updated as completed.')
+            else:
+                messages.warning(request, f'Task ({updated_task}) NOT completed.')
         return redirect("/")
     context = {
         'form': form,
