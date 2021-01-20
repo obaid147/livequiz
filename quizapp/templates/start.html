@@ -45,25 +45,34 @@ a{
                 <p>Question{{ q.question_number }}.  {{ q.question|linebreaks }}</p>
             </div>
         </div>
-    <p>
+
         <ul class="p-1 bg-secondary list-group list-group-flush" style="width: 60rem;">
 		    <li class="list-group-item">
-                <input type = "radio" name = "option" value = "a" id = "q1a" checked>
-                a. {{ q.option1 }}
+                <p>
+                    <input type = "radio" name = "option" value = "a" id = "q1a" checked>
+                    a. {{ q.option1 }}
+                </p>
             </li>
             <li class="list-group-item">
-                <input type = "radio" name = "option" value = "b" id = "q1b">
-                b. {{ q.option2 }}
+                <p>
+                    <input type = "radio" name = "option" value = "b" id = "q1b">
+                    b. {{ q.option2 }}
+                </p>
             </li>
             <li class="list-group-item">
-                <input type = "radio" name = "option" value = "c" id = "q1c">
-                c. {{ q.option3 }}
+                <p>
+                    <input type = "radio" name = "option" value = "c" id = "q1c">
+                    c. {{ q.option3 }}
+                </p>
             </li>
             <li class="list-group-item">
-            <input type = "radio" name = "option" value = "d" id = "q1d">
-                d. {{ q.option4 }}
+                <p>
+                    <input type = "radio" name = "option" value = "d" id = "q1d">
+                        d. {{ q.option4 }}
+                </p>
             </li>
-            <li class="list-group-item">
+            <div class="container p-1">
+                <!-- Next and Submit Button -->
                 <div class="pagination">
                     <span class="step-links">
                         {% if page_obj.has_next %}
@@ -77,13 +86,11 @@ a{
                         {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                 </div>
-            </li>
+            </div>
 
         </ul>
 
 	{% endfor %}
-
-            <!-- Next and Submit Button -->
 
 
 
