@@ -31,7 +31,7 @@ SECRET_KEY = 'u9unac)jhn$di_9s7@!d^$#uje62zefns4l2-%wsd6bgs0m_5j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://firstquizdjango.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['firstquizdjango.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
