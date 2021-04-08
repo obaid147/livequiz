@@ -1,1 +1,1 @@
-web: gunicorn livequiz.wsgi --log-file -
+web: gunicorn quiz.wsgi --log-file -
